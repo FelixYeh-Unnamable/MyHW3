@@ -8,7 +8,7 @@
         public DateTime SrcUpdateTime { get; set; }
         public int SrcUpdateInterval { get; set; }
         public string AuthorityCode { get; set; }
-        public List<StationLiveBoard> StationLiveBoard { get; set; }
+        public List<StationLiveBoard> StationLiveBoards { get; set; }
     }
 
     public class StationLiveBoard
@@ -50,4 +50,5 @@
         }
 
     }
+
 }
