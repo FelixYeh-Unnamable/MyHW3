@@ -1,4 +1,4 @@
-﻿
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyHW3.Models;
 using Newtonsoft.Json;
@@ -8,16 +8,17 @@ namespace MyHW3.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StationLiveBoardController : ControllerBase
+    public class ValuesController : ControllerBase
     {
         private readonly TokenBuild _tokenBuild;
         private readonly string tokenUri = $"https://tdx.transportdata.tw";
-        private readonly string apiUri = $"https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationLiveBoard";
-       
-        public StationLiveBoardController(TokenBuild tokenBuild)
+        private readonly string apiUri = $"https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/TrainLiveBoard/TrainNo/";
+        public ValuesController(TokenBuild tokenBuild)
         {
             _tokenBuild = tokenBuild;
         }
+
+
 
         //取得TDX API資料
         [HttpGet]
@@ -26,9 +27,9 @@ namespace MyHW3.Controllers
             var accessToken = _tokenBuild.GetToken(tokenUri).Result;
             var apiResponse = _tokenBuild.Get(GetParameters(), apiUri, accessToken.access_token).Result;
 
-            var collection =  JsonConvert.DeserializeObject<LiveBoard>(apiResponse);
+            var collection = JsonConvert.DeserializeObject<LiveBoard>(apiResponse);
 
-            return  collection;
+            return collection;
         }
 
         private Dictionary<string, string> GetParameters()

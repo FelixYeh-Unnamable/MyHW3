@@ -10,7 +10,9 @@ namespace MyHW3.Controllers
     [ApiController]
     public class StationLiveBoardController : ControllerBase
     {
+
         private readonly TokenBuild _tokenBuild;
+
         private readonly string tokenUri = $"https://tdx.transportdata.tw";
         private readonly string apiUri = $"https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationLiveBoard";
        
@@ -18,6 +20,8 @@ namespace MyHW3.Controllers
         {
             _tokenBuild = tokenBuild;
         }
+
+
 
         //取得TDX API資料
         [HttpGet]
@@ -30,6 +34,7 @@ namespace MyHW3.Controllers
 
             return  collection;
         }
+
 
         private Dictionary<string, string> GetParameters()
         {
@@ -44,7 +49,6 @@ namespace MyHW3.Controllers
                 { $"$format","JSON"},
             };
         }
-
 
 
     }
